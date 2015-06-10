@@ -13,10 +13,6 @@ from bisect import bisect_left
 
 check = 1
 
-a = 0
-b = 1
-N = 1000
-
 ''' Generalized PDF normalization '''
 
 def CreateCDF(pdf,a,b,N):
@@ -58,6 +54,9 @@ def Choice(cdf,x):
 
 ''' Check '''
 if check == 1:
+    a = 0
+    b = 1
+    N = 1000
     def Test_1(x):
         return x**2
     CDF_test_1, x_1 = CreateCDF(Test_1,a,b,N)
