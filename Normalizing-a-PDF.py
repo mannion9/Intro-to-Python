@@ -58,13 +58,13 @@ if check == 1:
     b = 1
     N = 1000
     def Test_1(x):
-        return x**2
+        return x**0
     CDF_test_1, x_1 = CreateCDF(Test_1,a,b,N)
     
     plt.figure(1)
     plt.scatter(x_1,CDF_test_1,c='r')
     def check(x):
-        return x**3
+        return x**1
     plt.plot(x_1,check(x_1),c='b')
     plt.xlabel('Variable x ')
     plt.ylabel('Cumulative density')
