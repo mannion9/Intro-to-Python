@@ -11,23 +11,26 @@
     The list of evenets I am interested in here is everything in the interior of the list ,i.e not the zeros at the begining and end of the list.
     These are inserted in order to ensure the sum indexing is correct '''
 
-events = [2,2]
-events.insert(0,0) , events.append(0)
-summer = sum(events)
 import random as r
 import matplotlib.pyplot as plt
-counter = []
 
-for numbers in range(20000):
+events = [2,1]
+events.insert(0,0) , events.append(0)
+    
+def choice(listing):
     ep = r.random()
+    middle = ep*sum(listing)
     index = 1
-    while index <= len(events)-2:
-        left = sum(events[0:index])
-        right= sum(events[0:index+1])
-        middle = ep*summer
-        truth = left < middle <= right
-        if truth == True:
-            counter.append(index)
-        #print('left sum',left,'middle',middle,'right sum',right,'event',index,'truth',truth)
+    while index <= len(listing)-2:
+        left = sum(listing[0:index])
+        right= sum(listing[0:index+1])
+        if (left < middle <= right) == True:
+            return(index)
         index += 1
+        
+counter = []
+for numbers in range(200):
+    counter.append(choice(events)) 
+
 plt.hist(counter)
+
