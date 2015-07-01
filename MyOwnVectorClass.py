@@ -1,3 +1,5 @@
+import math
+
 class Vector:
     ''' Vector of unknown length. Inputs is a list. '''
     def __init__(self,r):
@@ -67,10 +69,21 @@ class Vector:
         ''' Returns norm of vector'''
         ''' Ex: x.norm() '''
         return (sum([self.r[i]*self.r[i] for i in range(len(self.r))]))**(1/2)
-    def pow(self,power):
+    def power(self,power):
         ''' Returns the vector raised to a power '''
         ''' Ex: x.pow(2) '''
         return Vector([self.r[i]**power for i in range(len(self.r))])
     
+    
+    
+        
+    
+
+
+
+x = Vector([1,2])
+y = Vector([1,2])
+w = 2
+z = x.pow(2)
 
 
