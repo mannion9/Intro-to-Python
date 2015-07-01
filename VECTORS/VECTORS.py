@@ -67,7 +67,7 @@ class Vector:
         ''' Returns norm of vector'''
         ''' Ex: x.norm() '''
         return (sum([self.r[i]*self.r[i] for i in range(len(self.r))]))**(1/2)
-    def pow(self,power):
+    def power(self,power):
         ''' Returns the vector raised to a power '''
         ''' Ex: x.pow(2) '''
         return Vector([self.r[i]**power for i in range(len(self.r))])
