@@ -32,9 +32,39 @@ class Vector:
             return Vector([self.r[i] + other for i in range(len(self.r))])
         else:
             raise TypeError('other must be Vector,float, or int')
+    def __radd__(self,other):
+        ''' Returns the addition, allows other to be vector or a int/float'''
+        ''' Ex: (x is vectors, y is vector/int/float) z = x+y '''
+        if isinstance(other,Vector) or isinstance(other,list):
+            return Vector([self.r[i] + other[i] for i in range(len(self.r))])
+        if isinstance(other,float) or isinstance(other,int):
+            return Vector([self.r[i] + other for i in range(len(self.r))])
+        else:
+            raise TypeError('other must be Vector,float, or int')
+    def __iadd__(self,other):
+        if isinstance(other,Vector) or isinstance(other,list):
+            return Vector([self.r[i] + other[i] for i in range(len(self.r))])
+        if isinstance(other,float) or isinstance(other,int):
+            return Vector([self.r[i] + other for i in range(len(self.r))])
     def __sub__(self,other):
         ''' Returns the addition, allows other to be vector or a int/float'''
         ''' Ex: (x is vectors, y is vector/int/float) z = x-y '''
+        if isinstance(other,Vector) or isinstance(other,list):
+            return Vector([self.r[i] - other[i] for i in range(len(self.r))])
+        if isinstance(other,float) or isinstance(other,int):
+            return Vector([self.r[i] - other for i in range(len(self.r))])
+        else:
+            raise TypeError('other must be Vector,list,float, or int')
+    def __rsub__(self,other):
+        ''' Returns the addition, allows other to be vector or a int/float'''
+        ''' Ex: (x is vectors, y is vector/int/float) z = x-y '''
+        if isinstance(other,Vector) or isinstance(other,list):
+            return Vector([other[i] - self.r[i] for i in range(len(self.r))])
+        if isinstance(other,float) or isinstance(other,int):
+            return Vector([other - self.r[i] for i in range(len(self.r))])
+        else:
+            raise TypeError('other must be Vector,list,float, or int')
+    def __isub__(self,other):
         if isinstance(other,Vector) or isinstance(other,list):
             return Vector([self.r[i] - other[i] for i in range(len(self.r))])
         if isinstance(other,float) or isinstance(other,int):
@@ -50,15 +80,52 @@ class Vector:
             return Vector([self.r[i]*other for i in range(len(self.r))])
         else:
             raise TypeError('other must be Vector or list')
-    def divide(self,other):
+    def __rmul__(self,other):
+        ''' Returns the element by element mulutiplication'''
+        ''' x*y = z '''
+        if isinstance(other,Vector) or isinstance(other,list):
+            return Vector([self.r[i]*other[i] for i in range(len(self.r))])
+        if isinstance(other,float) or isinstance(other,int):
+            return Vector([self.r[i]*other for i in range(len(self.r))])
+        else:
+            raise TypeError('other must be Vector or list')
+    def __imul__(self,other):
+        if isinstance(other,Vector) or isinstance(other,list):
+            return Vector([self.r[i]*other[i] for i in range(len(self.r))])
+        if isinstance(other,float) or isinstance(other,int):
+            return Vector([self.r[i]*other for i in range(len(self.r))])
+        else:
+            raise TypeError('other must be Vector or list')
+    def __truediv__(self,other):
         ''' Returns the element by element division'''
         ''' x.divide(y) = z '''
         if isinstance(other,Vector) or isinstance(other,list):
-            return Vector([self.r[i]*(1/other[i]) for i in range(len(self.r))])
+            return Vector([self.r[i]/other[i] for i in range(len(self.r))])
         if isinstance(other,float) or isinstance(other,int):
             return Vector([self.r[i]/other for i in range(len(self.r))])
         else:
             raise TypeError('other must be Vector or list')
+    def __rtruediv__(self,other):
+        ''' Returns the element by element division'''
+        ''' x.divide(y) = z '''
+        if isinstance(other,Vector) or isinstance(other,list):
+            return Vector([other[i]/self.r[i] for i in range(len(self.r))])
+        if isinstance(other,float) or isinstance(other,int):
+            return Vector([other/self.r[i] for i in range(len(self.r))])
+        else:
+            raise TypeError('other must be Vector or list')
+    def __itruediv__(self,other):
+        if isinstance(other,Vector) or isinstance(other,list):
+            return Vector([self.r[i]/other[i] for i in range(len(self.r))])
+        if isinstance(other,float) or isinstance(other,int):
+            return Vector([self.r[i]/other for i in range(len(self.r))])
+        else:
+            raise TypeError('other must be Vector or list')
+    def __pow__(self,power):
+        ''' Returns the vector raised to a power '''
+        ''' Ex: x.pow(2) '''
+        assert type(power) == int or type(power) == float, 'Must be raised to a int or float'
+        return Vector([self.r[i]**power for i in range(len(self.r))])
     def average(self):
         ''' Returns average of vector elements'''
         ''' Ex: x.averager() '''
@@ -67,10 +134,7 @@ class Vector:
         ''' Returns norm of vector'''
         ''' Ex: x.norm() '''
         return (sum([self.r[i]*self.r[i] for i in range(len(self.r))]))**(1/2)
-    def power(self,power):
-        ''' Returns the vector raised to a power '''
-        ''' Ex: x.pow(2) '''
-        return Vector([self.r[i]**power for i in range(len(self.r))])
+
     
 
 
