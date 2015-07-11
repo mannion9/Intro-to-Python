@@ -1,4 +1,4 @@
-class Vector:
+class vector:
     ''' Vector of unknown length. Inputs is a list. '''
     def __init__(self,r):
         self.r = r
@@ -22,7 +22,7 @@ class Vector:
     def __repr__(self):
         ''' Returns a string version of vector.'''
         '''Ex: x=Vector([1,2]) ... x---> Vector [1,2]'''
-        return 'Vector %s' % self.r
+        return 'vector %s' % self.r
     def __add__(self,other):
         ''' Returns the addition, allows other to be vector or a int/float'''
         ''' Ex: (x is vectors, y is vector/int/float) z = x+y '''
@@ -134,7 +134,78 @@ class Vector:
         ''' Returns norm of vector'''
         ''' Ex: x.norm() '''
         return (sum([self.r[i]*self.r[i] for i in range(len(self.r))]))**(1/2)
+    def dot(self,other):
+        ''' Returns dot product of self and other '''
+        assert len(other) == len(self.r) , 'Vector lengths must be equal'
+        return sum([a*b for a,b in zip(self.r,other)])
 
+class matrix:
+    def __init__(self,x):
+        self.x = x
+    def __str__(self):
+        s = ""
+        for row in self.x:
+            s += "%s\n" % row
+        return s
+    def __getitem__(self,key):
+        ''' returns a value in the matrix '''
+        ''' Ex: m = matrix([[1,5],[1,1]]) ... m[0,1] = 5 '''
+        row , col = key
+        return self.x[row][col]
+    def __setitem__(self,key,value):
+        ''' ammends a value in the matrix '''
+        row , col = key
+        self.x[row][col] = value
+    def dimension(self):
+        ''' returns a list with the number of rows and columns of the matrix '''
+        return [len(self.x),len(self.x[0])]
+    def __add__(self,other):
+        ''' adds two matrix's element by element '''
+        assert other.dimension() == [len(self.x),len(self.x[0])], 'Matrix dimensions do not agree'
+        return [[a+b for a,b in zip(self.x[row],other[row,:])] for row in range(len(self.x[0]))]
+    def __radd__(self,other):
+        ''' adds a matrix from the left '''
+        assert other.dimension() == [len(self.x),len(self.x[0])], 'Matrix dimensions do not agree'
+        return [[a+b for a,b in zip(other[row,:],self.x[row])] for row in range(len(self.x[0]))]
+    def __iadd__(self,other):
+        ''' adds a matrix to this matrix'''
+        assert other.dimension() == [len(self.x),len(self.x[0])], 'Matrix dimensions do not agree'
+        return [[a+b for a,b in zip(self.x[row],other[row,:])] for row in range(len(self.x[0]))]
+    def __sub__(self,other):
+        ''' subtracts two matrix's element by element '''
+        assert other.dimension() == [len(self.x),len(self.x[0])], 'Matrix dimensions do not agree'
+        return [[a-b for a,b in zip(self.x[row],other[row,:])] for row in range(len(self.x[0]))]
+    def __radd__(self,other):
+        ''' adds a matrix from the left '''
+        assert other.dimension() == [len(self.x),len(self.x[0])], 'Matrix dimensions do not agree'
+        return [[a-b for a,b in zip(other[row,:],self.x[row])] for row in range(len(self.x[0]))]
+    def __isub__(self,other):
+        ''' adds a matrix to this matrix'''
+        assert other.dimension() == [len(self.x),len(self.x[0])], 'Matrix dimensions do not agree'
+        return [[a-b for a,b in zip(self.x[row],other[row,:])] for row in range(len(self.x[0]))]
+    def __mul__(self,other):
+        ''' multiplies two matrixes element by element '''
+        assert other.dimension() == [len(self.x),len(self.x[0])], 'Matrix dimensions do not agree'
+        return [[a*b for a,b in zip(self.x[row],other[row,:])] for row in range(len(self.x[0]))]
+    def __rmul__(self,other):
+        ''' multiplies two matrixes element by element from the left '''
+        assert other.dimension() == [len(self.x),len(self.x[0])], 'Matrix dimensions do not agree'
+        return [[a*b for a,b in zip(other[row,:],self.x[row])] for row in range(len(self.x[0]))]
+    def _imul__(self,other):
+        ''' multiplies a matrix to this matrix'''
+        assert other.dimension() == [len(self.x),len(self.x[0])], 'Matrix dimensions do not agree'
+        return [[a*b for a,b in zip(self.x[row],other[row,:])] for row in range(len(self.x[0]))]
+    def __truediv__(self,other):
+        ''' Divides to matrixs '''
+        assert other.dimension() == [len(self.x),len(self.x[0])], 'Matrix dimensions do not agree'
+        return[[a/b for a,b in zip(self.x[row],other[row,:])] for row in range(len(self.x[0]))]
+    def __rtruediv__(self,other):
+        ''' Divides to matrixs '''
+        assert other.dimension() == [len(self.x),len(self.x[0])], 'Matrix dimensions do not agree'
+        return[[a/b for a,b in zip(other[row,:],self.x[row])] for row in range(len(self.x[0]))]
+    def __itruediv__(self,other):
+        ''' Divides to matrixs '''
+        assert other.dimension() == [len(self.x),len(self.x[0])], 'Matrix dimensions do not agree'
+        return[[a/b for a,b in zip(self.x[row],other[row,:])] for row in range(len(self.x[0]))]
     
-
-
+m = matrix([[1,2],[1,2]])
