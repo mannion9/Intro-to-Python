@@ -241,3 +241,4 @@ class matrix:
         e = 2.718281828459045
         return matrix([[e**a for a in self.x[X_row] ]for X_row in range(len(self.x))])
 
+
