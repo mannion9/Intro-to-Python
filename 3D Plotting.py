@@ -20,7 +20,7 @@ if threeD_line_plot_choice == 1:
     fig = plt.figure()  # Creates figure to draw on
     ax = fig.add_subplot(1,1,1, projection='3d')  # The projection makes it 3d
 
-    X, Y, Z = [1,2,3,4,5,12],[1,2,3,4,9,5],[1,2,3,3,4,5]  # Creates 3 lists for X Y Z data
+    X, Y, Z = [1,2,3,4,5,12],[1,2,3,4,5,12]],[1,2,3,4,9,5],[1,2,3,3,4,5]  # Creates 3 lists for X Y Z data
 
     ax.plot_wireframe(X,Y,Z)
     plt.show()
