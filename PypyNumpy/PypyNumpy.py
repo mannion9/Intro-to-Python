@@ -159,6 +159,8 @@ class matrix:
         ''' ammends a value in the matrix '''
         row , col = key
         self.x[row][col] = value
+    def __repr__(self):
+        return 'matrix %s' % self.x
     def dimension(self):
         ''' returns a list with the number of rows and columns of the matrix '''
         return [len(self.x),len(self.x[0])]
