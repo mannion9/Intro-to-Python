@@ -21,6 +21,7 @@ for line in f:
 r = [[1.2,2.1,3.4],[2.1,3.0,4.3]]
 # Write
 f = open('Vector.txt','w')      # Creates a .txt file that you can write to in your directory
+#f.write('#Collisions Energy(MeV))
 for i in r:                     
     for j in i:
         if j == i[-1]:          # If this is the last element in the row vector

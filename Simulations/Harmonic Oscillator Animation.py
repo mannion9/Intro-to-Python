@@ -19,7 +19,7 @@
 nmin=40
 nmax=50
 
-si_squared=1    # Set to 1 if you would like to see si squared amination
+si_squared=0    # Set to 1 if you would like to see si squared amination
 si_real=0       # Set to 1 if you would like to see read part of si animation
 si_imaginary=0  # Set to 1 if you would like to see the imaginary part of si animation
 
