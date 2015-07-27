@@ -1,11 +1,23 @@
 from scipy.integrate import nquad
+from scipy.integrate import dblquad
 import numpy as np
+from time import time as tic
 
-def function(x,t):
+def function(t,x):
     return x+t    
     #return np.exp(-x)*np.sin(t) 
-I = nquad(function,[[0,1],[0,1]])
-print(I)
+def opts_1():
+    return {}
+    
+start = tic()
+for i in range(10):
+    I = dblquad(function,0,1,lambda y: 0,lambda y:1,epsabs=1E-8)
+    #I = nquad(function,[[0,1],[0,1]],opts=[opts_1()])
+stop = tic()
+
+
+
+
 
 
 def linspace(start, stop, n):
@@ -35,5 +47,11 @@ def trapazoid_2_d(func,xlim,ylim,n,m):
         i += 1
     I *= h*k*(1/4)
     return(I)
-    
-print(trapazoid_2_d(function,x_lim,y_lim,100,100))
+start_ = tic()
+for i in range(10):
+    (trapazoid_2_d(function,x_lim,y_lim,100,100))
+stop_ = tic()
+print('Numpy',stop-start)
+print('My',stop_-start_)
+
+
