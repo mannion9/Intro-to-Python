@@ -5,7 +5,7 @@
 ################## Inputs ######################
 ################################################
 order = 6         # What order polynomial do you need up to
-PType = 'Phy'   # Set to "Phy" for the physicist definition and "Prob" for the probabilitistic defintion
+PType = 'Prob'   # Set to "Phy" for the physicist definition and "Prob" for the probabilitistic defintion
 
 
 ################################################
