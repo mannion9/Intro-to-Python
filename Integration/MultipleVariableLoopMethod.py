@@ -41,16 +41,5 @@ for i in range(N):
     I = trapazoid_2_d(func_2_d,x_1,x_2)
 print("Me:",tic()-start)
 
-def simpson(function,x):
-    y = function(x)
-    del_x = (x[-1]-x[0])/(len(x)-1)
-    A = 4*np.identity(len(x))
-    A[0][0] , A[-1][-1] = 1 , 1
-    for i in range(int((len(x)-1)/2)-2):
-        i += 1        
-        A[2*i][2*i] -= 2
-    I = sum(A.dot(y))*del_x/3
-    return(A)
-    
-print(simpson(func_1_d,x_1))
+
         

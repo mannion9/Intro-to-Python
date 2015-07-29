@@ -13,7 +13,8 @@ def GuassQuad(function,n,a,b):
 
 import math
 def func(t):
-    return math.exp(-t**2)
+    return t**2
+    #return math.exp(-t**2)
 
 I_1 = GuassQuad(func,1,0,1)
 I_2 = GuassQuad(func,2,0,1)
