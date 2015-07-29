@@ -50,7 +50,7 @@ def simpson(function,x):
         i += 1        
         A[2*i][2*i] -= 2
     I = sum(A.dot(y))*del_x/3
-    return(I)
+    return(A)
     
 print(simpson(func_1_d,x_1))
         
