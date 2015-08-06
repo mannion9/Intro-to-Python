@@ -10,13 +10,29 @@ def GuassQuad(function,n,a,b):
     for i in range(n+1):
         I += b_j[i]*function(t_j[i])
     return I
+def Trapazoid(function,x):
+    y = function(x)
+    del_x = (x[-1]-x[0])/(2*(len(x)-1))
+    A = 2*np.identity(len(x))
+    A[0][0] , A[-1][-1] = 1 , 1
+    I = sum(A.dot(y))*del_x
+    return (I)
 
 import math
+import numpy as np
+from time import time as tic
 def func(t):
     return t**2
     #return math.exp(-t**2)
-
-I_1 = GuassQuad(func,1,0,1)
+x = np.linspace(0,1,10)
+I_1 = Trapazoid(func,x)
 I_2 = GuassQuad(func,2,0,1)
-            
-        
+
+start = tic()
+for i in range(10000):           
+    GuassQuad(func,3,0,1)
+print('Time to run guassian quad:',tic()-start)
+start = tic()
+for i in range(10000):
+    Trapazoid(func,x)
+print('Time to run trapazoid:',tic()-start)
